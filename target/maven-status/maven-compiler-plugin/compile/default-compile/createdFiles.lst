@@ -1,0 +1,16 @@
+com/pruebaejb/controller/PedidosViewBean.class
+com/pruebaejb/controller/ContactosViewBean.class
+com/pruebaejb/facade/ContactosFacadeLocal.class
+com/pruebaejb/models/Contactos_.class
+com/pruebaejb/facade/HoldersFacadeLocal.class
+com/pruebaejb/facade/PedidosFacadeLocal.class
+com/pruebaejb/facade/AbstractFacade.class
+com/pruebaejb/facade/HoldersFacade.class
+com/pruebaejb/controller/HolderViewBean.class
+com/pruebaejb/facade/PedidosFacade.class
+com/pruebaejb/models/Holders.class
+com/pruebaejb/models/Contactos.class
+com/pruebaejb/models/Pedidos.class
+com/pruebaejb/facade/ContactosFacade.class
+com/pruebaejb/models/Holders_.class
+com/pruebaejb/models/Pedidos_.class
