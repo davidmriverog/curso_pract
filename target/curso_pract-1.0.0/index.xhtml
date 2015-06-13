@@ -9,7 +9,22 @@
     </h:head>
     <h:body>
         <h:form id="form"> 
-            <p:dataTable var="pedidos" value="#{pedidosViewBean.mostrarTodosPedidos()}">
+            
+            <p:growl id="messagePedidos" showDetail="true" life="3000" />
+            
+            <p:dataTable id="pedidosTable" widgetVar="pedidosTableW" var="pedidos" value="#{pedidosViewBean.pedidosList}"
+                filteredValue="#{pedidosViewBean.filtreredPedidos}">
+                
+                <p:column headerText="Estado Pedido" filterBy="#{pedidos.estadoPedidoId.nombreEstado}" filterMatchMode="exact">
+                    <f:facet name="filter">
+                        <p:selectOneMenu value="#{pedidosViewBean.estadoId}">
+                            <f:selectItem itemLabel="Seleccione" itemValue="0" />
+                            <f:selectItems var="estadoPed" itemLabel="#{estadoPed.nombreEstado}" itemValue="#{estadoPed.id}" value="#{pedidosViewBean.estadoPedidosList}" />
+                            <p:ajax event="change" listener="#{pedidosViewBean.mostrarPedidosPorEstados()}"  />
+                        </p:selectOneMenu>
+                    </f:facet>
+                    <h:outputText value="#{pedidos.estadoPedidoId.nombreEstado}" />
+                </p:column>
                 <p:column headerText="Nro Solicitud">
                     <h:outputText value="#{pedidos.id}" />
                 </p:column> 
@@ -35,10 +50,14 @@
                 <p:column headerText="Monto a Pagar">
                     <h:outputText value="#{pedidos.monto_pagar_pedido}" /> .Bs F
                 </p:column>
+                <p:column headerText="Observaciones" rendered="#{ pedidosViewBean.btnConcept}">
+                    <h:outputText value="#{pedidos.conceptoPedido}" /> 
+                </p:column>
                 <p:column headerText="">
                     
                 </p:column>
             </p:dataTable>
+            <p:commandButton id="btnAprobar" value="Aprobar" disabled="#{pedidosViewBean.btnVisibleAprobar}" />
         </h:form>
     </h:body>
 </html>

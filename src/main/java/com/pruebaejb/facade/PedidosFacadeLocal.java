@@ -16,6 +16,8 @@ public interface PedidosFacadeLocal {
     Pedidos find(Object id);
 
     List<Pedidos> findAll();
+    
+    List<Pedidos> findAllbyStatus(int idStatus);
 
     List<Pedidos> findRange(int[] range);
 

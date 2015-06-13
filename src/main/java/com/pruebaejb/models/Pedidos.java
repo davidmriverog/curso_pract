@@ -21,7 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="pedidos")
 @XmlRootElement
 @NamedQueries({
-   @NamedQuery(name = "Pedidos.findAll",query="SELECT r FROM Pedidos r")
+   @NamedQuery(name = "Pedidos.findAll",query="SELECT r FROM Pedidos r"),
+   @NamedQuery(name = "Pedidos.findAllByStatus",query="SELECT r FROM Pedidos r WHERE r.estadoPedidoId.id = :statusId")
 })
 public class Pedidos implements Serializable {
     
@@ -46,6 +47,15 @@ public class Pedidos implements Serializable {
     
     @Column(name="monto_pagar")
     private double monto_pagar_pedido;
+    
+    @Column(name="concepto")
+    private String conceptoPedido;
+    
+    @JoinColumn(name = "estado_pedido",referencedColumnName="id")
+    @ManyToOne
+    private EstadoPedidos estadoPedidoId;
+    
+    
     
     // --> Transients
     @Transient
@@ -122,7 +132,23 @@ public class Pedidos implements Serializable {
     public void setNombreCompletoBeneficiario(String nombreCompletoBeneficiario) {
         this.nombreCompletoBeneficiario = nombreCompletoBeneficiario;
     }
-    
+
+    public String getConceptoPedido() {
+        return conceptoPedido;
+    }
+
+    public void setConceptoPedido(String conceptoPedido) {
+        this.conceptoPedido = conceptoPedido;
+    }
+
+    public EstadoPedidos getEstadoPedidoId() {
+        return estadoPedidoId;
+    }
+
+    public void setEstadoPedidoId(EstadoPedidos estadoPedidoId) {
+        this.estadoPedidoId = estadoPedidoId;
+    }
+     
     
     /* Methods */
 
